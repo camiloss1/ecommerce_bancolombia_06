@@ -19,8 +19,9 @@ export class LoginComponent implements OnInit {
     ]
   }
 
-  public get c(){
+  public get c() {
     return this.loginForm.controls;
+
   }
   constructor(private formBuilder: FormBuilder) { }
   ngOnInit(): void {
@@ -36,7 +37,8 @@ export class LoginComponent implements OnInit {
           '',
           [
             Validators.required,
-            Validators.pattern(/^(?=.{8,})(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?!.*\s).*$/gm)
+            Validators.pattern(/^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z]).{8,}$/gm)
+
           ]
         ]
       }
