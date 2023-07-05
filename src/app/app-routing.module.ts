@@ -5,13 +5,17 @@ import { HomeComponent } from './UI/modules/home/home.component';
 import { FullscreenComponent } from './UI/layouts/fullscreen/fullscreen.component';
 import { LoginComponent } from './UI/modules/login/login.component';
 import { RegisterComponent } from './UI/modules/register/register.component';
+import { Defaultauth } from './UI/shared/guards/defaultauth';
+import { ContactComponent } from './UI/modules/contact/contact.component';
 
 const routes: Routes = [
   {
     path: '',
     component: DefaultComponent,
+    canActivate:[Defaultauth],
     children: [
-      { path: '', component: HomeComponent }
+      { path: '', component: HomeComponent },
+      { path: 'contact', component: ContactComponent }
     ]
   },
   {
