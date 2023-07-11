@@ -6,6 +6,7 @@ import { SharedModule } from '../../shared/shared.module';
 import { RouterModule } from '@angular/router';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RegisterComponent } from '../../modules/register/register.component';
+import { HttpClientModule } from '@angular/common/http';
 
 
 
@@ -20,7 +21,8 @@ import { RegisterComponent } from '../../modules/register/register.component';
     RouterModule,
     SharedModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    HttpClientModule
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })

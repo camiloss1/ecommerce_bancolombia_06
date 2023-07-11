@@ -7,12 +7,14 @@ import { LoginComponent } from './UI/modules/login/login.component';
 import { RegisterComponent } from './UI/modules/register/register.component';
 import { Defaultauth } from './UI/shared/guards/defaultauth';
 import { ContactComponent } from './UI/modules/contact/contact.component';
+import { exampleguardGuard } from './UI/shared/guards/exampleguard.guard';
 
 const routes: Routes = [
+  {path:'', redirectTo:'/fullscreen/login', pathMatch:'full'},
   {
-    path: '',
+    path: 'default',
     component: DefaultComponent,
-    canActivate:[Defaultauth],
+    canActivate:[exampleguardGuard],
     children: [
       { path: '', component: HomeComponent },
       { path: 'contact', component: ContactComponent }
