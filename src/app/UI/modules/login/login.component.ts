@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { HttpClient, HttpHeaders } from '@angular/common/http'
+import { UserUseCase } from 'src/app/domain/models/usecase/user/userUseCase';
+import { User } from 'src/app/domain/models/User/user';
 
 @Component({
   selector: 'app-login',
@@ -25,7 +27,7 @@ export class LoginComponent implements OnInit {
     return this.loginForm.controls;
 
   }
-  constructor(private formBuilder: FormBuilder, private router: Router, private http: HttpClient) { }
+  constructor(private formBuilder: FormBuilder, private router: Router, private _userUseCase: UserUseCase) { }
   ngOnInit(): void {
     this.loginForm = this.formBuilder.group(
       {
@@ -50,18 +52,13 @@ export class LoginComponent implements OnInit {
   login() {
     var correo = this.loginForm.controls['email'].value;
     var contraseña = this.loginForm.controls['password'].value;
-    this.http.get('https://dummyjson.com/products').subscribe((data: any) => {
-      console.log(data);
-    });
-    const headers = new HttpHeaders().set('Content-Type', 'application/json')
-    .set('mi-header','mi-header-value')
-    this.http.post('https://dummyjson.com/auth/login', { username: 'kminchelle', password: '0lelplR' }, { headers }).subscribe((data: any) => {
-      console.log(data);
-    });
-    if (this.loginForm.valid) {
 
-      localStorage.setItem('token', correo + contraseña);
-      this.router.navigate(['/default']);
+    if (this.loginForm.valid) {
+      this._userUseCase.login(correo, contraseña).subscribe((response: User) => {
+        localStorage.setItem('token', response.token);
+        this.router.navigate(['/default']);
+      });
+
     }
     else {
       alert('formulario no valido');

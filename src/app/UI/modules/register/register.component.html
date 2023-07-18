@@ -11,12 +11,32 @@
               <form [formGroup]="registerForm">
 
                 <div class="form-outline mb-4">
-                  <input type="text" id="form3Example1cg" class="form-control form-control-lg" formControlName="name" />
+                  <input type="text" id="form3Example1cg" class="form-control form-control-lg" formControlName="firstName" />
                   <label class="form-label" for="form3Example1cg">Your Name</label>
-                  <div *ngIf="campos['name'].touched || campos['name'].dirty">
-                    <div *ngFor="let validation of validationMessages.name">
+                  <div *ngIf="campos['firstName'].touched || campos['firstName'].dirty">
+                    <div *ngFor="let validation of validationMessages.firstName">
                         <label class="text-danger"
-                            *ngIf="campos['name'].hasError(validation.type)">{{validation.message}}</label>
+                            *ngIf="campos['firstName'].hasError(validation.type)">{{validation.message}}</label>
+                    </div>
+                </div>
+                </div>
+                <div class="form-outline mb-4">
+                  <input type="text" id="form3Example1cg" class="form-control form-control-lg" formControlName="lastName" />
+                  <label class="form-label" for="form3Example1cg">Your LastName</label>
+                  <div *ngIf="campos['lastName'].touched || campos['lastName'].dirty">
+                    <div *ngFor="let validation of validationMessages.lastName">
+                        <label class="text-danger"
+                            *ngIf="campos['lastName'].hasError(validation.type)">{{validation.message}}</label>
+                    </div>
+                </div>
+                </div>
+                <div class="form-outline mb-4">
+                  <input type="text" id="form3Example1cg" class="form-control form-control-lg" formControlName="age" />
+                  <label class="form-label" for="form3Example1cg">Your Age</label>
+                  <div *ngIf="campos['age'].touched || campos['age'].dirty">
+                    <div *ngFor="let validation of validationMessages.age">
+                        <label class="text-danger"
+                            *ngIf="campos['age'].hasError(validation.type)">{{validation.message}}</label>
                     </div>
                 </div>
                 </div>

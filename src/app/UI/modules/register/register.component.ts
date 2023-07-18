@@ -1,3 +1,4 @@
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
@@ -12,7 +13,13 @@ export class RegisterComponent implements OnInit {
   registerForm!: FormGroup;
 
   public validationMessages = {
-    name: [
+    firstName: [
+      { type: 'required', message: 'Este campo es requerido' },
+    ],
+    lastName: [
+      { type: 'required', message: 'Este campo es requerido' },
+    ],
+    age: [
       { type: 'required', message: 'Este campo es requerido' },
     ],
     email: [ 
@@ -28,13 +35,19 @@ export class RegisterComponent implements OnInit {
       { type: 'pattern', message: 'Este campo debe contener por lo menos 1 mayuscula y una minuscula' }
     ]
   }
-  constructor(private formBuilder: FormBuilder, private router: Router) { }
+  constructor(private formBuilder: FormBuilder, private router: Router,private http: HttpClient) { }
   ngOnInit(): void {
     this.registerForm = this.formBuilder.group({
-      name: ['', [
+      firstName: ['', [
         Validators.required,
       ]
       ],
+      lastName: ['', [
+        Validators.required,
+      ]],
+      age: ['', [
+        Validators.required,
+      ]],
       email: ['', [
         Validators.required,
         Validators.email
@@ -66,7 +79,17 @@ export class RegisterComponent implements OnInit {
     return this.registerForm.controls
   }
   register(){
+    var firstName = this.registerForm.controls['firstName'].value;
+    var lastName = this.registerForm.controls['lastName'].value;
+    var age = this.registerForm.controls['age'].value;
+    var password = this.registerForm.controls['password'].value;
+    var email = this.registerForm.controls['email'].value;
     if (this.registerForm.valid) {
+      const headers = new HttpHeaders().set('Content-Type', 'application/json')
+      .set('mi-header','mi-header-value')
+      this.http.post('https://dummyjson.com/users/add', { firstName, lastName,age, email,password }, { headers }).subscribe((data: any) => {
+        console.log(data);
+      });
       this.router.navigate(['/fullscreen/login']);
     }
     else {

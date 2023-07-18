@@ -5,6 +5,8 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { DefaultModule } from './UI/layouts/default/default.module';
 import { FullscreenModule } from './UI/layouts/fullscreen/fullscreen.module';
+import { Usergateway } from './domain/models/User/gateway/usergateway';
+import { UserService } from './infraestructure/driven-adapter/services/user/user.service';
 
 
 
@@ -18,7 +20,7 @@ import { FullscreenModule } from './UI/layouts/fullscreen/fullscreen.module';
     DefaultModule,
     FullscreenModule
   ],
-  providers: [],
+  providers: [{ provide: Usergateway, useClass: UserService }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

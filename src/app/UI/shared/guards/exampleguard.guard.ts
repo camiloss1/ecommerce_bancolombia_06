@@ -2,7 +2,10 @@ import { CanActivateFn } from '@angular/router';
 
 export const exampleguardGuard: CanActivateFn = (route, state) => {
   var token = localStorage.getItem('token');
-  if(token === 'a@a.comQwerty1234')
+  // llamemos un servicio que nos indique si el token que tenemos es valido, o ejecutar una clase que nos valide lo mismo
+
+  //LLamado a UserUseCase Token
+  if(token)
   {
       return true;  
   }
