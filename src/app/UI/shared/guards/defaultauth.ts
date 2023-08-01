@@ -9,7 +9,7 @@ export class Defaultauth implements CanActivate {
     constructor(private router : Router){}
     canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): boolean | UrlTree | Observable<boolean | UrlTree> | Promise<boolean | UrlTree> {
         var token = localStorage.getItem('token');
-        if(token === 'a@a.comQwerty1234')
+        if(token)
         {
             return true;  
         }
