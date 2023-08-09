@@ -12,7 +12,7 @@ export class ProductsService extends ProductGateway {
   constructor(private genericService: GenericService) {
     super();
   }
-  
+
   _url = 'https://dummyjson.com'
   getProducts(): Observable<ProductsResponse> {
     return this.genericService.get<ProductsResponse>(this._url, 'products')
